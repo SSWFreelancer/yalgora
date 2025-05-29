@@ -135,6 +135,9 @@ document.addEventListener('DOMContentLoaded', function(){
 				prevEl: '.abode__prev',
 			},
 			on: {
+				init: function () {
+					setHeight();
+				},
 				update: function () {
 					setHeight();
 				},
@@ -251,4 +254,45 @@ document.addEventListener('DOMContentLoaded', function(){
 			});
 		});
 	}
+
+	let reviews = document.querySelector('.reviews__slider');
+	if(reviews){
+		new Swiper(reviews, {
+			slidesPerView: 3,
+			spaceBetween: 40,
+			loop: false,
+			speed: 600,
+			pagination: {
+				el: '.reviews__fraction',
+				type: 'fraction',
+			},
+			navigation: {
+				nextEl: '.reviews__next',
+				prevEl: '.reviews__prev',
+			},
+			breakpoints: {
+				0: {
+					slidesPerView: 1,
+					spaceBetween: 12,
+				},
+				651: {
+					slidesPerView: 1.3,
+					spaceBetween: 20,
+				},
+				801: {
+					slidesPerView: 2,
+					spaceBetween: 25,
+				},
+				1160: {
+					slidesPerView: 3,
+					spaceBetween: 25,
+				},
+				1240: {
+					slidesPerView: 3,
+					spaceBetween: 40,
+				},
+			}
+		});
+	}
+
 });
