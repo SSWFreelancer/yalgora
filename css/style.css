@@ -2565,12 +2565,12 @@ span.active ~ .seasons__ico span img:first-child {
   position: relative;
 }
 @media (min-width: 767.1px) {
-  .way {
+  .way:has(.way__dec) {
     padding-bottom: 130px;
   }
 }
 @media (min-width: 1023.1px) {
-  .way {
+  .way:has(.way__dec) {
     padding-bottom: 250px;
   }
 }

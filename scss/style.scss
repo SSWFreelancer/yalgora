@@ -1811,10 +1811,14 @@ body {
 .way {
   position: relative;
   @media(min-width: 767.1px) {
-    padding-bottom: 130px;
+    &:has(.way__dec){
+      padding-bottom: 130px;
+    }
   }
   @media(min-width: 1023.1px) {
-    padding-bottom: 250px;
+    &:has(.way__dec){
+      padding-bottom: 250px;
+    }
   }
   &__dec{
     position: absolute;
