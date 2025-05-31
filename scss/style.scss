@@ -53,10 +53,10 @@ body {
   .wrapper:not(:has( > main)) &{
     padding-top: 90px;
   }
-  &:has(.graybg:first-child){
+  &:has(> .graybg:first-child){
     padding-top: 0 !important;
   }
-  &:has(.graybg:last-child){
+  &:has( > .graybg:last-child){
     padding-bottom: 0;
   }
   @media(max-width: $md) {
@@ -70,7 +70,7 @@ body {
     gap: 45px;
     padding: 45px 0;
     .wrapper:not(:has( > main)) &{
-      padding-top: 40px;
+      padding-top: 50px;
     }
   }
 }
@@ -175,7 +175,7 @@ body {
     padding-top: 25px;
     transition: all 0.3s ease 0s;
     transform-origin: top left;
-    .header.show &, body.lock &{
+    body.lock &{
       transform: scale(0.85);
     }
     & img{
@@ -191,8 +191,18 @@ body {
   width: 100%;
   background-color: #FFFFFF;
   z-index: 1020;
+  transition: all 0.3s ease 0s;
   &.show{
     box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.15);
+  }
+  body:not(.lock) &.hide{
+    transform: translateY(-160px);
+    @media(max-width: $sm) {
+      transform: translateY(-105px);
+    }
+    @media(max-width: $xs) {
+      transform: translateY(-85px);
+    }
   }
   &__search {
     flex: 0 0 22px;
@@ -313,7 +323,6 @@ body {
       height: 100%;
       background-color: #FFFFFF;
       z-index: 7;
-      pointer-events: none;
     }
   }
   @media(max-width: $xs) {
@@ -328,22 +337,29 @@ body {
       left: 0px;
       top: 0px;
       width: 60px;
-      height: 80px;
+      height: 100px;
       background-color: $red;
       clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding-top: 10px;
+      padding-top: 18px;
       transition: all 0.3s ease 0s;
       transform-origin: top left;
+      .wrapper:not(:has( > main)) &{
+        left: 30px;
+      }
       & img{
         width: 19px;
       }
     }
     @media(max-width: $xs) {
       width: 41px;
+      height: 80px;
       padding-top: 13px;
+      .wrapper:not(:has( > main)) &{
+        left: 12px;
+      }
     }
   }
   &__container {
@@ -407,6 +423,9 @@ body {
     height: auto;
     opacity:1;
     visibility:visible;
+    & button{
+      transform: translateY(2px);
+    }
     & input{
       padding: 20px 0;
     }
@@ -546,6 +565,11 @@ body {
       opacity:1;
       visibility:visible;
     }
+    body:not(.lock) .header.hide .menu__item:hover &{
+      pointer-events:none;
+      opacity:0;
+      visibility:hidden;
+    }
   }
   & ul{
     list-style: none;
@@ -594,11 +618,17 @@ body {
     display: flex;
     flex-direction: column;
     gap: 28px;
-    & p{
+    & > a{
       font-size: 14px;
       color: #9d9d9d;
       font-weight: 600;
       text-transform: uppercase;
+      transition: all 0.3s ease 0s;
+      @media(any-hover: hover) {
+        &:hover{
+          color: $blue;
+        }
+      }
     }
     & ul{
       display: flex;
@@ -629,7 +659,7 @@ body {
           display: block;
         }
       }
-      & p{
+      & > a{
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -647,7 +677,7 @@ body {
         }
       }
       &.active {
-        & p{
+        & > a{
           &:after{
             transform: rotate(45deg);
           }
@@ -727,6 +757,31 @@ body {
   position: relative;
   width: 100%;
   color: #FFFFFF;
+  &__button{
+    padding: 17px 32px;
+    align-self: flex-start;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 10px;
+    background: $red;
+    font-size: 18px;
+    @media(max-width: $sm) {
+      padding: 13px 20px;
+      font-size: 16px;
+    }
+    transition: all 0.3s ease 0s;
+    & img{
+      flex: 0 0 37px;
+      width: 37px;
+    }
+    @media(any-hover: hover) {
+      &:hover {
+        background-color: #951743;
+      }
+    }
+  }
   &__bg {
     position: absolute;
     left: 0;
@@ -806,9 +861,6 @@ body {
       padding-left: 93px;
     }
     @media(max-width: $sm) {
-      padding-left: 0;
-    }
-    @media(max-width: $xs) {
       padding-left: 40px;
     }
     @media(max-width: $xs) {
@@ -1329,9 +1381,9 @@ body {
   &__item {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 38px;
     & img{
+      align-self: center;
       width: 50px;
     }
     @media(max-width: 1200px) {
@@ -1651,11 +1703,9 @@ body {
       }
     }
     @media(max-width: $sm) {
-      & span{
-        & ~ .arrows{
+        & .arrows{
           display: none;
         }
-      }
     }
   }
   &__fullslider{
@@ -1678,6 +1728,7 @@ body {
   &__slider {
     max-width: 100%;
     & .swiper-slide{
+      height: auto;
       display: flex;
       flex-direction: column;
       gap: 40px;
@@ -1720,6 +1771,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    flex: 1 1 auto;
     & small {
       font-size: 15px;
       color: #666666;
@@ -1762,6 +1814,14 @@ body {
   display: flex;
   align-items: center;
   gap: 25px;
+  @media(max-width: $sm) {
+    gap: 10px;
+    font-size: 15px;
+    justify-content: center;
+  }
+  @media(max-width: $xs) {
+    font-size: 12px;
+  }
 }
 .arrow {
   cursor: pointer;
@@ -1830,16 +1890,7 @@ body {
       user-select: none;
     }
     @media(max-width: $sm) {
-      bottom: auto;
-      top: 20px;
-      max-width: 450px;
-      width: 100%;
-      & img{
-        width: 100%;
-      }
-    }
-    @media(max-width: 370px) {
-      top: 50px;
+      display: none;
     }
   }
   &__container {
@@ -1855,7 +1906,7 @@ body {
       gap: 60px;
     }
     @media(max-width: $sm) {
-      gap: 73px;
+      gap: 40px;
     }
   }
 
@@ -1874,10 +1925,12 @@ body {
     flex-direction: column;
     gap: 19px;
     align-items: center;
+    text-align: center;
     & img{
       width: 50px;
     }
     @media(max-width: $md) {
+      text-align: left;
       flex-direction: row;
       gap: 30px;
       align-items: flex-start;
@@ -1887,6 +1940,7 @@ body {
     }
     @media(max-width: $xs) {
       flex-direction: column;
+      text-align: center;
       align-items: center;
       gap: 15px;
       & img{
@@ -1912,16 +1966,11 @@ body {
   }
 
   &__name {
-    text-align: center;
     color: #3695C0;
     font-size: 20px;
     text-transform: uppercase;
     font-weight: 600;
-    @media(max-width: $md) {
-      text-align: left;
-    }
     @media(max-width: $xs) {
-      text-align: center;
       font-size: 14px;
     }
   }
@@ -2017,7 +2066,7 @@ body {
       font-size: 18px;
       color: #000;
       font-weight: 400;
-      padding-bottom: 16px;
+      padding-bottom: 8px;
       border-bottom: 1px solid #000000;
       &::placeholder{
         opacity: 1;
@@ -2036,7 +2085,6 @@ body {
       & input{
         font-size: 15px;
         max-width: 100%;
-        padding-bottom: 8px;
       }
     }
   }
@@ -2488,9 +2536,10 @@ body {
     & img{
       width: 80px;
       flex: 0 0 80px;
+      transform: translateY(-1px);
     }
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     gap: 6px;
     font-size: 14px;
     font-weight: 400;
@@ -2508,55 +2557,92 @@ body {
 
 .abode {
 
+  &__footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 35px;
+    row-gap: 20px;
+    @media(max-width: $md) {
+      gap: 20px;
+    }
+    & > span{
+      max-width: 390px;
+    }
+  }
+
+  &__footer-wrap {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    flex-wrap: wrap;
+    color: #333333;
+  }
+
+  &__footer-btn {
+    padding: 11px 28px;
+    text-align: center;
+    color: #FFFFFF;
+    background-color: $blue;
+    border-radius: 10px;
+    transition: all 0.3s ease 0s;
+    @media(any-hover: hover) {
+      &:hover{
+        background-color: #1bb6fd;
+      }
+    }
+  }
+
+  &__footer-soc {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    & a{
+      flex: 0 0 30px;
+      width: 30px;
+      height: 30px;
+      & img{
+        width: 100%;
+        user-select: none;
+      }
+    }
+  }
+
   &__container {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 60px;
     position: relative;
     & .slider-actions{
       z-index: 3;
       position: absolute;
       justify-content: start;
       left: calc(50% + 20px);
-      top: calc(var(--abodeHeight) + 110px);
+      top: calc(var(--abodeHeight) + 120px);
       transition: all 0.3s ease 0s;
       &.hide{
         opacity: 0;
       }
       @media(max-width: $md) {
-        top: calc(var(--abodeHeight) + 90px);
+        top: calc(var(--abodeHeight) + 100px);
       }
       @media(max-width: $sm) {
-        top: auto;
-        bottom: calc(100% + 18px + 30px + var(--abodeHeightItems) + 45px);
-        transform: translateY(50%);
-        left: 0;
-        width: 100%;
         justify-content: center;
-      }
-      @media(max-width: $xs) {
-        bottom: calc(100% + 25px + 20px + var(--abodeHeightItems) + 45px);
-      }
-    }
-    & > .slider-actions{
-      @media(max-width: $sm) {
+        margin-top: -15px;
         position: static;
         transform: translateY(0);
       }
     }
     @media(max-width: $md) {
-      gap: 40px;
+      gap: 50px;
     }
     @media(max-width: $sm) {
-      gap: 30px;
-    }
-    @media(max-width: $xs) {
-      gap: 20px;
+      gap: 45px;
     }
   }
 
   &__bottom {
-    margin-top: 40px;
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
     gap: 35px;
@@ -2566,19 +2652,18 @@ body {
       text-transform: uppercase;
     }
     @media(max-width: $md) {
-      margin-top: 18px;
+      margin-top: 8px;
       & > b{
         font-size: 18px;
       }
     }
     @media(max-width: $sm) {
-      position: relative;
+      margin-top: 0;
     }
     @media(max-width: $xs) {
       & > b{
         font-size: 14px;
       }
-      margin-top: 25px;
       gap: 15px;
     }
   }
@@ -2676,11 +2761,9 @@ body {
     gap: 60px;
     row-gap: 30px;
     @media(max-width: $md) {
-      margin-top: 10px;
       justify-content: start;
     }
     @media(max-width: $sm) {
-      margin-top: 60px;
       padding: 30px 20px;
     }
     @media(max-width: $xs) {
@@ -2698,6 +2781,7 @@ body {
     gap: 12px;
     & img{
       flex: 0 0 30px;
+      user-select: none;
       width: 30px;
     }
     @media(max-width: $xs) {
@@ -2966,18 +3050,22 @@ body {
 .breadcrumb {
   padding-top: 67px;
   @media(max-width: $md) {
-    padding-top: 80px;
+    padding-top: 10px;
+    padding-left: 100px;
   }
   @media(max-width: $sm) {
-    padding-top: 40px;
+    padding-top: 10px;
+    padding-left: 75px;
   }
   @media(max-width: $xs) {
-    padding-top: 55px;
+    padding-left: 55px;
+    font-size: 14px;
   }
   &__container {
     display: flex;
     align-items: center;
     gap: 10px;
+    row-gap: 7px;
     flex-wrap: wrap;
     color: #6D6D6D;
     & img{
@@ -3060,6 +3148,9 @@ body {
     }
     @media(max-width: $sm) {
       gap: 30px;
+      & > .scheme__column:not(:last-child){
+        margin-bottom: 15px;
+      }
     }
   }
 
@@ -3069,15 +3160,6 @@ body {
       height:100%;
       object-fit:cover;
       user-select: none;
-    }
-  }
-
-  &__content {
-    display: flex;
-    flex-direction: column;
-    gap: 42px;
-    @media(max-width: $md) {
-      gap: 24px;
     }
   }
 
@@ -3099,9 +3181,9 @@ body {
     gap: 40px;
     @media(max-width: $md) {
       grid-template-columns: 1fr;
-      gap: 30px;
+      gap: 45px;
       &:has(> .scheme__items + .scheme__items){
-        gap: 16px;
+        gap: 30px;
       }
     }
   }
@@ -3111,7 +3193,7 @@ body {
     flex-direction: column;
     gap: 42px;
     @media(max-width: $md) {
-      gap: 24px;
+      gap: 30px;
     }
   }
 
@@ -3120,7 +3202,7 @@ body {
     flex-direction: column;
     gap: 30px;
     @media(max-width: $md) {
-      gap: 16px;
+      gap: 15px;
     }
   }
 
@@ -3128,6 +3210,9 @@ body {
     display: flex;
     align-items: center;
     gap: 14px;
+    @media(max-width: $md) {
+      gap: 20px;
+    }
   }
 
   &__count {
@@ -3156,10 +3241,10 @@ body {
       background-color: #000000;
     }
     @media(max-width: $sm) {
-      flex: 0 0 35px;
-      width: 35px;
-      font-size: 16px;
-      height: 35px;
+      flex: 0 0 30px;
+      width: 30px;
+      font-size: 15px;
+      height: 30px;
     }
   }
 
@@ -3368,14 +3453,24 @@ body {
   display: flex;
   flex-direction: column;
   @media(max-width: $md) {
-    padding: 80px 0 123px;
+    padding: 20px 0 123px;
     min-height: 0;
   }
   @media(max-width: $sm) {
-    padding: 50px 0 100px;
+    padding: 10px 0 100px;
   }
   & .breadcrumb{
     padding-top: 0;
+    padding-left: 0;
+    @media(max-width: $md) {
+      padding-left: 100px;
+    }
+    @media(max-width: $sm) {
+      padding-left: 45px;
+    }
+    @media(max-width: $xs) {
+      padding-left: 43px;
+    }
     &__container{
       color: #FFFFFF;
       padding: 0;
@@ -3476,6 +3571,10 @@ body {
   &__title {
     font-size: 28px;
     font-weight: 600;
+    text-transform: uppercase;
+    @media(max-width: $sm) {
+      font-size: 24px;
+    }
   }
 
   &__text {
@@ -3626,4 +3725,10 @@ body {
         }
       }
 		}
+}
+
+br.hide-on-mob{
+  @media(max-width: $sm) {
+    display: none;
+  }
 }

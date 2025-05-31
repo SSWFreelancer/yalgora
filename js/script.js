@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(){
-
+	let scrolPos = 0;
 	function handleScroll() {
 		window.requestAnimationFrame(function() {
 			var scroll = document.documentElement.scrollTop;
@@ -10,6 +10,12 @@ document.addEventListener('DOMContentLoaded', function(){
 			else{
 				header.classList.remove('show');
 			}
+			if (scroll > scrolPos && scroll > 150) {
+				header.classList.add('hide');
+			} else {
+				header.classList.remove('hide');
+			}
+			scrolPos = scroll;
 		})
 	}
 	handleScroll();
@@ -34,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
 	let headerBurger = document.querySelector('.header__burger');
 	let menu = document.querySelector('.menu');
-	let menuLink = document.querySelectorAll('.menu__list a');
+	let menuLink = document.querySelectorAll('.menu__list ul a');
 	let body = document.body;
 	
 	if(headerBurger){
@@ -93,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function(){
 		})
 	}
 
-	let menuSubLinkItem = document.querySelectorAll('.submenu__list > p');
+	let menuSubLinkItem = document.querySelectorAll('.submenu__list > a');
 	if(menuSubLinkItem){
 		menuSubLinkItem.forEach(function(menuSubLinkItem) {
 			menuSubLinkItem.addEventListener('click', function(e) {
@@ -151,9 +157,7 @@ document.addEventListener('DOMContentLoaded', function(){
 	function setHeight() {
 		let height = abodeTitle.offsetHeight;
 		let activeSlideTextHeight = document.querySelector('.abode__slider > .swiper-wrapper .swiper-slide-active > span')?.offsetHeight;
-		let activeSlideItemsHeight = document.querySelector('.abode__slider > .swiper-wrapper .swiper-slide-active .abode__items')?.offsetHeight;
 		document.documentElement.style.setProperty('--abodeHeight', `${height + activeSlideTextHeight}px`);
-		document.documentElement.style.setProperty('--abodeHeightItems', `${activeSlideItemsHeight}px`);
 	}
 
 	let abodeGalleries = document.querySelectorAll('.abode__gallery');
@@ -292,6 +296,25 @@ document.addEventListener('DOMContentLoaded', function(){
 					spaceBetween: 40,
 				},
 			}
+		});
+	}
+
+	let sliderBlocks = document.querySelectorAll('.slider-block');
+	if(sliderBlocks){
+		sliderBlocks.forEach(function(sliderBlock) {
+			let sliderBlockTexts = sliderBlock.querySelectorAll('.slider-block__texts b');
+			if(sliderBlockTexts){
+				let minHeightText = 0;
+				sliderBlockTexts.forEach(function(sliderBlockText) {
+					let height = sliderBlockText.offsetHeight;
+					if (height > minHeightText) {
+						minHeightText = height;
+					}
+				});
+				sliderBlockTexts.forEach(function(sliderBlockText) {
+					sliderBlockText.style.minHeight = `${minHeightText}px`;
+				});
+			}		
 		});
 	}
 
