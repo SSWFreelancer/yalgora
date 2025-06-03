@@ -121,43 +121,46 @@ document.addEventListener('DOMContentLoaded', function(){
 			},
 		});
 	}
-
-	let abodeTitle = document.querySelector('.abode__container > .title');
-	let abodeActions = document.querySelector('.abode__container .slide-actions');
-	if (document.querySelector('.abode__slider')) {
-		new Swiper('.abode__slider', {
-			slidesPerView: 1,
-			spaceBetween: 0,
-			loop: false,
-			effect: 'fade',
-			speed: 600,
-			autoHeight: true,
-			pagination: {
-				el: '.abode__fraction',
-				type: 'fraction',
-			},
-			navigation: {
-				nextEl: '.abode__next',
-				prevEl: '.abode__prev',
-			},
-			on: {
-				init: function () {
-					setHeight();
+	let abodeContainers = document.querySelectorAll('.abode__container');
+	if(abodeContainers){
+		abodeContainers.forEach(container => {
+			let title = container.querySelector('.title');
+			let sliderEl = container.querySelector('.abode__slider');
+			if (!sliderEl) return;
+			function setHeight() {
+				let height = title.offsetHeight;
+				let activeSlideText = sliderEl.querySelector('.swiper-slide-active > span');
+				let activeSlideTextHeight = activeSlideText ? activeSlideText.offsetHeight : 0;
+				container.style.setProperty('--abodeHeight', `${height + activeSlideTextHeight}px`);
+			}
+			let swiper = new Swiper(sliderEl, {
+				slidesPerView: 1,
+				spaceBetween: 0,
+				loop: false,
+				effect: 'fade',
+				speed: 600,
+				autoHeight: true,
+				pagination: {
+					el: container.querySelector('.abode__fraction'),
+					type: 'fraction',
 				},
-				update: function () {
-					setHeight();
+				navigation: {
+					nextEl: container.querySelector('.abode__next'),
+					prevEl: container.querySelector('.abode__prev'),
 				},
-				transitionEnd: function () {
-					setHeight();
+				on: {
+					init: function () {
+						setHeight();
+					},
+					update: function () {
+						setHeight();
+					},
+					transitionEnd: function () {
+						setHeight();
+					},
 				},
-			},
+			});
 		});
-	}
-
-	function setHeight() {
-		let height = abodeTitle.offsetHeight;
-		let activeSlideTextHeight = document.querySelector('.abode__slider > .swiper-wrapper .swiper-slide-active > span')?.offsetHeight;
-		document.documentElement.style.setProperty('--abodeHeight', `${height + activeSlideTextHeight}px`);
 	}
 
 	let abodeGalleries = document.querySelectorAll('.abode__gallery');
