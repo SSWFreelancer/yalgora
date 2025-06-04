@@ -1433,6 +1433,39 @@ body {
 }
 
 .seasons {
+  &__inner {
+    padding: 30px 35px;
+    background-color: $red;
+    display: flex;
+    flex-direction: column;
+    color: #FFFFFF;
+    gap: 20px;
+    justify-content: space-between;
+    border-radius: 10px;
+    @media(min-width: 1023.1px) {
+      grid-row: span 2;
+    }
+    @media(max-width: $md) {
+      padding: 30px 25px;
+    }
+    @media(max-width: $sm) {
+      gap: 30px;
+    }
+    @media(max-width: $xs) {
+      padding: 20px;
+      gap: 25px;
+    }
+  }
+
+  &__inner-top {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    @media(max-width: $sm) {
+      font-size: 18px;
+    }
+  }
+
   &__blank{
     align-self: center;
     margin-top: 30px;
@@ -1637,12 +1670,12 @@ body {
       gap: 30px;
     }
     @media(max-width: $sm) {
+      grid-auto-rows: auto;
       grid-template-columns: 1fr;
       gap: 25px;
     }
     @media(max-width: $xs) {
       gap: 15px;
-      grid-auto-rows: 140px;
     }
   }
 
@@ -1681,9 +1714,13 @@ body {
     @media(max-width: $md) {
       padding: 40px 25px;
     }
+    @media(max-width: $sm) {
+      min-height: 271px;
+    }
     @media(max-width: $xs) {
       font-size: 14px;
       padding: 15px 10px;
+      min-height: 141px;
       & span{
         gap: 10px;
         & img{
@@ -4207,6 +4244,9 @@ br.hide-on-mob{
             background-color: #FFFFFF;
             font-weight: 600;
           }
+        }
+        &:last-child td{
+          border-bottom: 0;
         }
       }
     }

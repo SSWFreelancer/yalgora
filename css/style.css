@@ -2069,6 +2069,54 @@ body:not(.lock) .header.hide {
   }
 }
 
+.seasons__inner {
+  padding: 30px 35px;
+  background-color: #D23552;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  color: #FFFFFF;
+  gap: 20px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-radius: 10px;
+}
+@media (min-width: 1023.1px) {
+  .seasons__inner {
+    grid-row: span 2;
+  }
+}
+@media (max-width: 1023px) {
+  .seasons__inner {
+    padding: 30px 25px;
+  }
+}
+@media (max-width: 767px) {
+  .seasons__inner {
+    gap: 30px;
+  }
+}
+@media (max-width: 550px) {
+  .seasons__inner {
+    padding: 20px;
+    gap: 25px;
+  }
+}
+.seasons__inner-top {
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+@media (max-width: 767px) {
+  .seasons__inner-top {
+    font-size: 18px;
+  }
+}
 .seasons__blank {
   -ms-flex-item-align: center;
       align-self: center;
@@ -2338,6 +2386,7 @@ span.active ~ .seasons__ico span img:first-child {
 }
 @media (max-width: 767px) {
   .seasons__cards {
+    grid-auto-rows: auto;
     grid-template-columns: 1fr;
     gap: 25px;
   }
@@ -2345,7 +2394,6 @@ span.active ~ .seasons__ico span img:first-child {
 @media (max-width: 550px) {
   .seasons__cards {
     gap: 15px;
-    grid-auto-rows: 140px;
   }
 }
 .seasons__card {
@@ -2405,10 +2453,16 @@ span.active ~ .seasons__ico span img:first-child {
     padding: 40px 25px;
   }
 }
+@media (max-width: 767px) {
+  .seasons__card {
+    min-height: 271px;
+  }
+}
 @media (max-width: 550px) {
   .seasons__card {
     font-size: 14px;
     padding: 15px 10px;
+    min-height: 141px;
   }
   .seasons__card span {
     gap: 10px;
@@ -5894,6 +5948,9 @@ span.active ~ .seasons__ico span img:first-child {
   color: #000;
   background-color: #FFFFFF;
   font-weight: 600;
+}
+.table table tbody tr:last-child td {
+  border-bottom: 0;
 }
 .table.white table {
   background-color: #FFFFFF;
