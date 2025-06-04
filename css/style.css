@@ -2348,6 +2348,9 @@ span.active ~ .seasons__ico span img:first-child {
   .seasons__card:nth-child(2), .seasons__card:nth-child(3) {
     grid-row: span 3;
   }
+  .full-height-cards .seasons__card {
+    grid-row: span 3;
+  }
 }
 @media (max-width: 1023px) {
   .seasons__card {
@@ -5308,6 +5311,9 @@ span.active ~ .seasons__ico span img:first-child {
   overflow-x: auto;
   overflow-y: hidden;
   position: relative;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  white-space: nowrap;
 }
 @media (max-width: 1023px) {
   .recommend__nav {

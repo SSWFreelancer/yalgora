@@ -1646,6 +1646,9 @@ body {
       &:nth-child(2), &:nth-child(3){
         grid-row: span 3;
       }
+      .full-height-cards &{
+        grid-row: span 3;
+      }
     }
     @media(max-width: $md) {
       padding: 40px 25px;
@@ -3755,6 +3758,8 @@ body {
       overflow-x: auto;
       overflow-y: hidden;
       position: relative;
+      flex-wrap: nowrap;
+      white-space: nowrap;
       @media(max-width: $md) {
         gap: 40px;
       }
