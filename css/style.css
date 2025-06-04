@@ -5890,6 +5890,11 @@ span.active ~ .seasons__ico span img:first-child {
   color: #333333;
   border-bottom: 1px solid #CFCFCF;
 }
+.table table tbody tr td.white {
+  color: #000;
+  background-color: #FFFFFF;
+  font-weight: 600;
+}
 .table.white table {
   background-color: #FFFFFF;
 }

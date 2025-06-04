@@ -4202,6 +4202,11 @@ br.hide-on-mob{
         & td{
           color: #333333;
           border-bottom: 1px solid #CFCFCF;
+          &.white{
+            color: #000;
+            background-color: #FFFFFF;
+            font-weight: 600;
+          }
         }
       }
     }
