@@ -75,6 +75,7 @@ document.addEventListener('DOMContentLoaded', function(){
 				contentActive.forEach(function(contentActive){
 					if (contentActive) {
 						contentActive.classList.remove('target');
+						contentActive.classList.remove('active');
 					}	  
 				});
 				this.classList.add('active');
@@ -83,6 +84,9 @@ document.addEventListener('DOMContentLoaded', function(){
 				tabId.forEach(function(tabId){
 					if (tabId) {
 						tabId.classList.add('target');
+						setTimeout(function() {
+							tabId.classList.add('active');
+						}, 10);
 					}	  
 				});
 			});
