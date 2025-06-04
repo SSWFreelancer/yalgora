@@ -4200,10 +4200,17 @@ br.hide-on-mob{
     & tbody{
       & tr{
         & td{
+          color: #333333;
           border-bottom: 1px solid #CFCFCF;
         }
       }
     }
+  }
+  &.white table{
+    background-color: #FFFFFF;
+  }
+  &.not-full{
+    max-width: 630px;
   }
 }
 
@@ -4308,6 +4315,81 @@ br.hide-on-mob{
     & b{
       color: $red;
       font-weight: 600;
+    }
+  }
+}
+
+.how {
+
+		&__container {
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+      @media(max-width: $md) {
+        gap: 40px;
+      }
+      @media(max-width: $sm) {
+        gap: 30px;
+      }
+		}
+
+		&__text {
+      & a{
+        font-weight: 600;
+        transition: all 0.3s ease 0s;
+        @media(any-hover: hover) {
+          &:hover{
+            color: $blue;
+          }
+        }
+      }
+		}
+
+		&__content {
+      display: flex;
+      flex-direction: column;
+      gap: 45px;
+      @media(max-width: $md) {
+        gap: 30px;
+      }
+      @media(max-width: $sm) {
+        gap: 20px;
+      }
+		}
+  &__description {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: 405px 1fr;
+    @media(max-width: $md) {
+      gap: 25px;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+      grid-auto-rows: 1fr;
+    }
+  }
+
+  &__desc {
+    padding: 40px 25px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: #424242;
+    background-color: #EEEEEE;
+    border-radius: 10px;
+    & > b{
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 20px;
+      color: $blue;
+    }
+    @media(max-width: $md) {
+      padding: 30px 24px 40px;
+    }
+    @media(max-width: $sm) {
+      gap: 20px;
+      padding: 20px;
+      & b{
+        font-size: 18px;
+      }
     }
   }
 }
