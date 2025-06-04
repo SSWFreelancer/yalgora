@@ -1333,6 +1333,34 @@ body {
     line-height: 1.4;
   }
 
+  &__list{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    line-height: 1.4;
+    @media(max-width: $sm) {
+      gap: 20px;
+    }
+    &-item{
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      & img{
+        flex: 0 0 35px;
+        width: 35px;
+        user-select: none;
+        transform: translateY(15%);
+      }
+      @media(max-width: $sm) {
+        gap: 15px;
+        & img{
+          flex: 0 0 25px;
+          width: 25px;
+        }
+      }
+    }
+  }
+
   &__image {
     border-radius: 10px;
     overflow: hidden;
@@ -3070,6 +3098,9 @@ body {
     border-radius: 10px;
     max-width: 100%;
     overflow: hidden;
+    @media(max-width: $sm) {
+      order: -1;
+    }
     & img{
       width:100%;
       height:100%;
@@ -3108,6 +3139,9 @@ body {
         width: 100%;
         max-width: 220px;
         justify-content: space-between;
+        &:not(:has(img)){
+          justify-content: center;
+        }
       }
     }
   }
@@ -3691,9 +3725,27 @@ body {
       font-size: 24px;
     }
   }
-
+  &__bigtitle {
+    font-size: 40px;
+    font-weight: 600;
+    text-transform: uppercase;
+    @media(max-width: $lg) {
+      font-size: 28px;
+    }
+    @media(max-width: $sm) {
+      font-size: 24px;
+    }
+  }
   &__text {
     line-height: 1.35;
+    & a{
+      transition: all 0.3s ease 0s;
+      @media(any-hover: hover) {
+        &:hover{
+          color: $blue;
+        }
+      }
+    }
   }
 
   &__button {
@@ -4111,6 +4163,124 @@ br.hide-on-mob{
       & img{
         flex: 0 0 18px;
         width: 18px;
+      }
+    }
+  }
+}
+
+
+.table {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  @media(max-width: $xs) {
+    max-width: calc(100vw - 24px);
+  }
+  & table{
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #EEEEEE;
+    & th, & td{
+      padding: 20px 30px;
+      @media(max-width: $xs) {
+        padding: 15px;
+      }
+      &:last-child{
+        white-space: nowrap;
+      }
+    }
+    & thead{
+      background-color: $red;
+      color: #FFFFFF;
+      text-align: left;
+      font-weight: 700;
+    }
+    & tbody{
+      & tr{
+        & td{
+          border-bottom: 1px solid #CFCFCF;
+        }
+      }
+    }
+  }
+}
+
+.faq {
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    @media(max-width: $md) {
+      gap: 40px;
+    }
+    @media(max-width: $xs) {
+      gap: 30px;
+    }
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    @media(max-width: $md) {
+      gap: 20px;
+    }
+    @media(max-width: $xs) {
+      gap: 15px;
+    }
+  }
+  &__body{
+    pointer-events:none;
+    opacity:0;
+    visibility:hidden;
+    max-height: 0;
+    transition: all 0.3s ease 0s;
+    padding: 0 25px;
+    @media(max-width: $sm) {
+      padding: 0 15px;
+    }
+    .faq__item.active &{
+      margin-top: 40px;
+      margin-bottom: 20px;
+      pointer-events:auto;
+      opacity:1;
+      visibility:visible;
+      @media(max-width: $md) {
+        margin-top: 30px;
+      }
+      @media(max-width: $sm) {
+        margin-top: 15px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  &__item{
+    overflow: hidden;
+  }
+
+  &__top {
+    background-color: #F3F2F2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    font-weight: 700;
+    padding: 30px 25px;
+    cursor: pointer;
+    @media(max-width: $sm) {
+      padding: 20px 15px;
+    }
+    & img{
+      flex: 0 0 18px;
+      width: 18px;
+      user-select: none;
+      transition: all 0.3s ease 0s;
+    }
+    .faq__item.active &{
+      & img{
+        transform: rotate(90deg);
       }
     }
   }

@@ -325,4 +325,23 @@ document.addEventListener('DOMContentLoaded', function(){
 		});
 	}
 
+	let faqTop = document.querySelectorAll('.faq__top');
+	if(faqTop){
+		faqTop.forEach((faqTop) => {
+			faqTop.addEventListener("click", function () {
+				faqTop.parentNode.classList.toggle('active');
+				slideToggle(faqTop.nextElementSibling);
+			});
+		});
+	}
+	function slideToggle(element) {
+		var target = element.style;
+		if (target.maxHeight) {
+			target.maxHeight = null;
+		} else {
+			target.maxHeight = element.scrollHeight + 'px';
+		}
+	}	
+
+
 });
