@@ -343,5 +343,17 @@ document.addEventListener('DOMContentLoaded', function(){
 		}
 	}	
 
-
+	const telmask = document.querySelectorAll("[data-mask]");
+	if(telmask){
+		telmask.forEach(function(input) {
+			let maskInput = input.getAttribute('data-mask');
+			if(maskInput){
+				const maskOptions = {
+					mask: maskInput,
+					lazy:true,
+				};
+				const mask = IMask(input, maskOptions);
+			}
+		});
+	}
 });
