@@ -370,6 +370,7 @@ body:not(.lock) .header.hide {
   height: 22px;
   cursor: pointer;
   position: relative;
+  z-index: 2;
 }
 .header__search img {
   -webkit-user-select: none;
@@ -754,6 +755,7 @@ body:not(.lock) .header.hide {
 }
 .menu__item {
   position: relative;
+  cursor: pointer;
 }
 .menu__item.for-mobile {
   display: none;
@@ -766,10 +768,14 @@ body:not(.lock) .header.hide {
 .menu__item:after {
   content: "";
   position: absolute;
-  top: 100%;
-  height: 30px;
-  left: 0;
-  width: 100%;
+  top: 0;
+  height: calc(100% + 30px);
+  right: -30px;
+  width: calc(100% + 60px);
+  pointer-events: none;
+}
+.menu__item:first-child:after {
+  width: calc(100% + 200px);
 }
 @media (max-width: 1023px) {
   .menu__item {
@@ -780,6 +786,9 @@ body:not(.lock) .header.hide {
   }
 }
 @media (any-hover: hover) {
+  .menu__item:hover:after {
+    pointer-events: auto;
+  }
   .menu__item:hover .menu__link {
     color: #5AC1F0;
   }
@@ -5152,7 +5161,7 @@ span.active ~ .seasons__ico span img:first-child {
   }
 }
 
-.banner {
+.inner {
   position: relative;
   color: #FFFFFF;
   min-height: 466px;
@@ -5166,40 +5175,40 @@ span.active ~ .seasons__ico span img:first-child {
           flex-direction: column;
 }
 @media (max-width: 1023px) {
-  .banner {
+  .inner {
     padding: 20px 0 123px;
     min-height: 0;
   }
 }
 @media (max-width: 767px) {
-  .banner {
+  .inner {
     padding: 10px 0 100px;
   }
 }
-.banner .breadcrumb {
+.inner .breadcrumb {
   padding-top: 0;
   padding-left: 0;
 }
 @media (max-width: 1023px) {
-  .banner .breadcrumb {
+  .inner .breadcrumb {
     padding-left: 100px;
   }
 }
 @media (max-width: 767px) {
-  .banner .breadcrumb {
+  .inner .breadcrumb {
     padding-left: 45px;
   }
 }
 @media (max-width: 550px) {
-  .banner .breadcrumb {
+  .inner .breadcrumb {
     padding-left: 43px;
   }
 }
-.banner .breadcrumb__container {
+.inner .breadcrumb__container {
   color: #FFFFFF;
   padding: 0;
 }
-.banner__bg {
+.inner__bg {
   position: absolute;
   left: 0;
   top: 0;
@@ -5208,7 +5217,7 @@ span.active ~ .seasons__ico span img:first-child {
   z-index: 0;
   pointer-events: none;
 }
-.banner__bg:after {
+.inner__bg:after {
   content: "";
   position: absolute;
   left: 0;
@@ -5217,7 +5226,7 @@ span.active ~ .seasons__ico span img:first-child {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.35);
 }
-.banner__bg img {
+.inner__bg img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
@@ -5227,7 +5236,7 @@ span.active ~ .seasons__ico span img:first-child {
       -ms-user-select: none;
           user-select: none;
 }
-.banner__container {
+.inner__container {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
@@ -5244,12 +5253,12 @@ span.active ~ .seasons__ico span img:first-child {
   gap: 123px;
 }
 @media (max-width: 767px) {
-  .banner__container {
+  .inner__container {
     gap: 80px;
   }
 }
 @media (max-width: 550px) {
-  .banner__container .title br {
+  .inner__container .title br {
     display: none;
   }
 }

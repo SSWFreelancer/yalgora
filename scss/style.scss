@@ -210,6 +210,7 @@ body {
     height: 22px;
     cursor: pointer;
     position: relative;
+    z-index: 2;
     & img{
       user-select: none;
       width: 100%;
@@ -480,6 +481,7 @@ body {
 
   &__item {
     position: relative;
+    cursor: pointer;
     &.for-mobile{
       display: none;
       @media(max-width: $md) {
@@ -489,10 +491,14 @@ body {
     &:after{
       content: '';
       position: absolute;
-      top: 100%;
-      height: 30px;
-      left: 0;
-      width: 100%;
+      top: 0;
+      height: calc(100% + 30px);
+      right: -30px;
+      width: calc(100% + 60px);
+      pointer-events: none;
+    }
+    &:first-child:after{
+      width: calc(100% + 200px);
     }
     @media(max-width: $md) {
       position: static;
@@ -502,6 +508,9 @@ body {
     }
     @media(any-hover: hover) {
       &:hover {
+        &:after{
+          pointer-events: auto;
+        }
         & .menu__link{
           color: $blue;
         }
@@ -3626,7 +3635,7 @@ body {
   }
 }
 
-.banner {
+.inner {
   position: relative;
   color: #FFFFFF;
   min-height: 466px;
