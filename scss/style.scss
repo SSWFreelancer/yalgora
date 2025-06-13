@@ -497,6 +497,9 @@ body {
       width: calc(100% + 60px);
       pointer-events: none;
     }
+    &:not(:has(.submenu)):after{
+      display: none;
+    }
     &:first-child:after{
       width: calc(100% + 200px);
     }

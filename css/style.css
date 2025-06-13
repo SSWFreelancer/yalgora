@@ -774,6 +774,9 @@ body:not(.lock) .header.hide {
   width: calc(100% + 60px);
   pointer-events: none;
 }
+.menu__item:not(:has(.submenu)):after {
+  display: none;
+}
 .menu__item:first-child:after {
   width: calc(100% + 200px);
 }
